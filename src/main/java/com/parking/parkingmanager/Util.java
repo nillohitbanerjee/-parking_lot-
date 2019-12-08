@@ -1,13 +1,12 @@
 package com.parking.parkingmanager;
 
+import com.parking.commandCenter.CommandUtil;
 import com.parking.commandCenter.Commands;
 import com.parking.parking.ParkingLot;
 import com.parking.parking.Slot;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 public final class Util {
@@ -19,37 +18,33 @@ public final class Util {
             reader = new BufferedReader(new FileReader(filePath));
             String line = reader.readLine();
             int count=0;
+            ParkingLot parkingLot= null;
             while (line != null) {
                 System.out.println(line);
                 line = reader.readLine();
 
                 if(line.contains(Commands.create_parking_lot.name()) && count ==0){
                     count++;
-                    intializeSystem(line);
+                    parkingLot=intializeSystem(line);
                 }
                 if(line.contains(Commands.park.name())){
 
-                    intializeSystem(line);
+                    CommandUtil.park(parkingLot);
                 }
                 if(line.contains(Commands.leave.name())){
-                    count++;
-                    intializeSystem(line);
+                    CommandUtil.leave(parkingLot);
                 }
-                if(line.contains(Commands.create_parking_lot.name())){
-                    count++;
-                    intializeSystem(line);
+                if(line.contains(Commands.status.name())){
+                    CommandUtil.status(parkingLot);
                 }
-                if(line.contains(Commands.create_parking_lot.name())){
-                    count++;
-                    intializeSystem(line);
+                if(line.contains(Commands.registration_numbers_for_cars_with_colour.name())){
+                    CommandUtil.registrationNumbersForCarsWithColour(parkingLot);
                 }
-                if(line.contains(Commands.create_parking_lot.name())){
-                    count++;
-                    intializeSystem(line);
+                if(line.contains(Commands.slot_numbers_for_cars_with_colour.name())){
+                    CommandUtil.slotNumbersForCarsWithColour(parkingLot);
                 }
-                if(line.contains(Commands.create_parking_lot.name())){
-                    count++;
-                    intializeSystem(line);
+                if(line.contains(Commands.slot_number_for_registration_number.name())){
+                    CommandUtil.slotNumberForRegistrationNumber(parkingLot);
                 }
 
             }
@@ -59,7 +54,7 @@ public final class Util {
         }
     }
 
-    private static void intializeSystem(String line) {
+    private static ParkingLot intializeSystem(String line) {
 
         String temp [] = line.split(" ");
 
@@ -68,7 +63,7 @@ public final class Util {
         ParkingLot parkingLot = new ParkingLot();
 
         parkingLot.setMaxSize(numberOfParkingSpace);
-        List<Slot> slots = new ArrayList<>();
+        Slot[] slots = new Slot[numberOfParkingSpace];
         Stack<Integer> emptySlots = new Stack<>();
         for (int i =numberOfParkingSpace; i>0; i++){
             emptySlots.push(i);
@@ -81,6 +76,7 @@ public final class Util {
         parkingLot.setSlots(slots);
 
 
+        return parkingLot;
 
     }
 }

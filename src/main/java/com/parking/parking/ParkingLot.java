@@ -5,7 +5,7 @@ import java.util.Stack;
 
 public class ParkingLot {
 
-    private List<Slot> slots;
+    private Slot slots[];
     private Stack<Integer> emptySlots;
     private Stack<Integer> filledSlots;
     private int maxSize;
@@ -18,11 +18,11 @@ public class ParkingLot {
         this.maxSize = maxSize;
     }
 
-    public List<Slot> getSlots() {
+    public Slot[] getSlots() {
         return slots;
     }
 
-    public void setSlots(List<Slot> slots) {
+    public void setSlots(Slot[] slots) {
         this.slots = slots;
     }
 
