@@ -3,7 +3,6 @@ package com.parking.dao;
 import com.parking.parking.Slot;
 import com.parking.vehicle.Vehicle;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
