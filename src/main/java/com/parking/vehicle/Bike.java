@@ -1,6 +1,6 @@
 package com.parking.vehicle;
 
-public class Bike implements Vehicle{
+public class Bike extends UniqueVechile{
 
     private Colour colour;
     private Size size;
