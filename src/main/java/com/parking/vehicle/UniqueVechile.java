@@ -6,7 +6,7 @@ public  abstract class UniqueVechile implements Vehicle {
     @Override
     public int hashCode() {
         final int prime = 31;
-        int hash = 7;
+        final int hash = 7;
         int result=1;
         for (int i = 0; i < getRegistrationNumber().length(); i++) {
             result = result + hash*prime + getRegistrationNumber().charAt(i);
@@ -25,8 +25,6 @@ public  abstract class UniqueVechile implements Vehicle {
         if (getClass() != obj.getClass())
             return false;
         Vehicle other = (Vehicle) obj;
-        if (this.getRegistrationNumber() != other.getRegistrationNumber())
-            return false;
-        return true;
+        return !this.getRegistrationNumber().equals(other.getRegistrationNumber());
     }
 }

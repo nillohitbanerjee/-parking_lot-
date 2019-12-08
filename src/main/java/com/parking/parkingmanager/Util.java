@@ -25,7 +25,7 @@ public final class Util {
 
                 if(line.contains(Commands.create_parking_lot.name()) && count ==0){
                     count++;
-                    parkingLot=intializeSystem(line);
+                    parkingLot= intializeSystem(line);
                 }
                 if(line.contains(Commands.park.name())){
 
@@ -56,7 +56,7 @@ public final class Util {
 
     private static ParkingLot intializeSystem(String line) {
 
-        String temp [] = line.split(" ");
+        String[] temp = line.split(" ");
 
         int numberOfParkingSpace = Integer.parseInt(temp[1]);
 
@@ -65,7 +65,7 @@ public final class Util {
         parkingLot.setMaxSize(numberOfParkingSpace);
         Slot[] slots = new Slot[numberOfParkingSpace];
         Stack<Integer> emptySlots = new Stack<>();
-        for (int i =numberOfParkingSpace; i>0; i++){
+        for (int i =numberOfParkingSpace; i>0; i--){
             emptySlots.push(i);
         }
 

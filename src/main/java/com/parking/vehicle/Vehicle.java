@@ -3,16 +3,16 @@ package com.parking.vehicle;
 public interface Vehicle {
 
 
-    public Colour getColour() ;
+    Colour getColour() ;
 
-    public Vehicle colour(Colour colour) ;
+    Vehicle colour(Colour colour) ;
 
-    public Size getSize() ;
+    Size getSize() ;
 
-    public Vehicle size(Size size) ;
+    Vehicle size(Size size) ;
 
-    public String getRegistrationNumber() ;
+    String getRegistrationNumber() ;
 
-    public Vehicle registrationNumber(String registrationNumber) ;
+    Vehicle registrationNumber(String registrationNumber) ;
 
 }

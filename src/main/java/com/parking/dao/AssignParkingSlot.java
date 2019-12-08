@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public final class AssignParkingSlot {
 
 
-    private static Map<Vehicle, Slot> vehicleSlotMap = new ConcurrentHashMap<>();
+    private static final Map<Vehicle, Slot> vehicleSlotMap = new ConcurrentHashMap<>();
 
     public static  Map<Vehicle, Slot> getCurrentStatusOfSystem(){
 
