@@ -1,13 +1,11 @@
 package com.parking.parkingmanager;
 
-import com.parking.commandCenter.CommandUtil;
-import com.parking.commandCenter.Commands;
+import com.parking.commandCenter.*;
+import com.parking.parking.MyParkingLot;
 import com.parking.parking.ParkingLot;
-import com.parking.parking.Slot;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.Stack;
 
 public final class Util {
 
@@ -20,33 +18,37 @@ public final class Util {
             int count=0;
             ParkingLot parkingLot= null;
             while (line != null) {
+                Command command =null;
                 System.out.println(line);
                 line = reader.readLine();
 
                 if(line.contains(Commands.create_parking_lot.name()) && count ==0){
                     count++;
-                    parkingLot= intializeSystem(line);
+                    parkingLot= initializeSystem(line);
                 }
                 if(line.contains(Commands.park.name())){
-
-                    CommandUtil.park(parkingLot);
+                    ParkLeaveBean parkLeaveBean = doParkingOrLeave(line);
+                    command = new Park(parkLeaveBean.getVehicle(),parkLeaveBean.getParkingLot());
                 }
                 if(line.contains(Commands.leave.name())){
-                    CommandUtil.leave(parkingLot);
+                    ParkLeaveBean parkLeaveBean = doParkingOrLeave(line);
+                    command = new Leave(parkLeaveBean.getVehicle(),parkLeaveBean.getParkingLot());
                 }
                 if(line.contains(Commands.status.name())){
-                    CommandUtil.status(parkingLot);
+                    command = new Status(parkingLot);
                 }
                 if(line.contains(Commands.registration_numbers_for_cars_with_colour.name())){
-                    CommandUtil.registrationNumbersForCarsWithColour(parkingLot);
+                    command = new RegistrationNumbersForCarsWithColour(parkingLot,getInput(line));
                 }
                 if(line.contains(Commands.slot_numbers_for_cars_with_colour.name())){
-                    CommandUtil.slotNumbersForCarsWithColour(parkingLot);
+                    command = new SlotNumbersForCarsWithColour(parkingLot,getInput(line));
                 }
                 if(line.contains(Commands.slot_number_for_registration_number.name())){
-                    CommandUtil.slotNumberForRegistrationNumber(parkingLot);
+                    command = new SlotNumberForRegistrationNumber(parkingLot,getInput(line));
                 }
 
+                if(command!=null)
+                    command.execute();
             }
             reader.close();
         } catch (Exception e) {
@@ -54,27 +56,22 @@ public final class Util {
         }
     }
 
-    private static ParkingLot intializeSystem(String line) {
+    private static String getInput(String line) {
+        return null;
+    }
+
+    private static ParkLeaveBean doParkingOrLeave(String line) {
+
+        return null;
+    }
+
+    private static ParkingLot initializeSystem(String line) {
 
         String[] temp = line.split(" ");
 
         int numberOfParkingSpace = Integer.parseInt(temp[1]);
 
-        ParkingLot parkingLot = new ParkingLot();
-
-        parkingLot.setMaxSize(numberOfParkingSpace);
-        Slot[] slots = new Slot[numberOfParkingSpace];
-        Stack<Integer> emptySlots = new Stack<>();
-        for (int i =numberOfParkingSpace; i>0; i--){
-            emptySlots.push(i);
-        }
-
-        Stack<Integer> filledSlots = new Stack<>();
-
-        parkingLot.setEmptySlots(emptySlots);
-        parkingLot.setFilledSlots(filledSlots);
-        parkingLot.setSlots(slots);
-
+        ParkingLot parkingLot = new MyParkingLot(numberOfParkingSpace);
 
         return parkingLot;
 

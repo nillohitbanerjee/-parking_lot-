@@ -1,44 +1,13 @@
 package com.parking.parking;
 
-import java.util.List;
-import java.util.Stack;
+import com.parking.vehicle.Vehicle;
 
-public class ParkingLot {
+public interface ParkingLot {
 
-    private Slot[] slots;
-    private Stack<Integer> emptySlots;
-    private Stack<Integer> filledSlots;
-    private int maxSize;
-
-    public int getMaxSize() {
-        return maxSize;
-    }
-
-    public void setMaxSize(int maxSize) {
-        this.maxSize = maxSize;
-    }
-
-    public Slot[] getSlots() {
-        return slots;
-    }
-
-    public void setSlots(Slot[] slots) {
-        this.slots = slots;
-    }
-
-    public Stack<Integer> getEmptySlots() {
-        return emptySlots;
-    }
-
-    public void setEmptySlots(Stack<Integer> emptySlots) {
-        this.emptySlots = emptySlots;
-    }
-
-    public Stack<Integer> getFilledSlots() {
-        return filledSlots;
-    }
-
-    public void setFilledSlots(Stack<Integer> filledSlots) {
-        this.filledSlots = filledSlots;
-    }
+    public  void park(Vehicle vehicle);
+    public  void leave(Vehicle vehicle) ;
+    public  void status() ;
+    public  void registrationNumbersForCarsWithColour(String colour) ;
+    public  void slotNumbersForCarsWithColour(String colour) ;
+    public  void slotNumberForRegistrationNumber(String registrationNumber) ;
 }
