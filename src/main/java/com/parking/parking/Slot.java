@@ -42,7 +42,6 @@ public class Slot {
     public int hashCode() {
         int result = 17;
         result = 31 * result + number;
-        result = 31 * result + slotType.hashCode();
         return result;
     }
 }

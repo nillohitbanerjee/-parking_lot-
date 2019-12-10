@@ -7,7 +7,7 @@ import com.parking.vehicle.Vehicle;
 public class ParkLeaveBean {
 
     private Vehicle vehicle;
-    private ParkingLot parkingLot;
+
     private Slot slot;
 
     public Slot getSlot() {
@@ -26,11 +26,5 @@ public class ParkLeaveBean {
         this.vehicle = vehicle;
     }
 
-    public ParkingLot getParkingLot() {
-        return this.parkingLot;
-    }
 
-    public void setParkingLot(final ParkingLot parkingLot) {
-        this.parkingLot = parkingLot;
-    }
 }

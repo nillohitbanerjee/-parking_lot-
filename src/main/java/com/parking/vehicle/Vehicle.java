@@ -3,9 +3,9 @@ package com.parking.vehicle;
 public interface Vehicle {
 
 
-    Colour getColour() ;
+    String getColour() ;
 
-    Vehicle colour(Colour colour) ;
+    Vehicle colour(String colour) ;
 
     Size getSize() ;
 

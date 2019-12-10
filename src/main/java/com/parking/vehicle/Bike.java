@@ -2,16 +2,16 @@ package com.parking.vehicle;
 
 public class Bike extends UniqueVechile{
 
-    private Colour colour;
+    private String colour;
     private Size size;
     private String registrationNumber;
 
 
-    public Colour getColour() {
+    public String getColour() {
         return colour;
     }
 
-    public Vehicle colour(Colour colour) {
+    public Vehicle colour(String colour) {
         this.colour = colour;
         return this;
     }

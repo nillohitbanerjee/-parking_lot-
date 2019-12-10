@@ -33,13 +33,13 @@ public class MyParkingLot implements ParkingLot {
 
         for (int i =0; i<size; i++){
             Slot slot = new Slot();
-            slot.number(i).slotType(SlotType.CAR);
+            slot.number(i+1).slotType(SlotType.CAR);
             slots[i]=slot;
         }
 
 
         this.emptySlots = new Stack<>();
-        for (int i =size; i>0; i--){
+        for (int i =size; i>=0; i--){
             emptySlots.push(i);
         }
 
