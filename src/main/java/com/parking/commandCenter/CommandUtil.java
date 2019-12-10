@@ -41,11 +41,11 @@ public final class CommandUtil {
     public static void status(ParkingLot parkingLot) {
 
 
-        //System.out.format("%10s%20s%10s", "Slot No.", "Registration No", "Colour");
-        System.out.println( "Slot No."+"Registration No"+ "Colour");
+        System.out.format("%s%22s%10s", "Slot No.", "Registration No", "Colour\n");
+
         Map<Slot, Vehicle> slotVehicleMap = AssignParkingSlot.getCurrentStatusOfSlot();
         slotVehicleMap.forEach((slot,vehicle)->{
-            System.out.println( slot.getNumber()+vehicle.getRegistrationNumber()+vehicle.getColour());
+            System.out.format("%s%27s%11s",  slot.getNumber(),vehicle.getRegistrationNumber(),vehicle.getColour()+"\n");
         });
 
 
@@ -54,7 +54,7 @@ public final class CommandUtil {
     public static void registrationNumbersForCarsWithColour(ParkingLot parkingLot, String colour) {
         Map<Slot, Vehicle> slotVehicleMap = AssignParkingSlot.getCurrentStatusOfSlot();
         slotVehicleMap.forEach((slot,vehicle)->{
-            if(vehicle.getColour().toString().equalsIgnoreCase(colour))
+            if(vehicle.getColour().equalsIgnoreCase(colour))
             System.out.print(vehicle.getRegistrationNumber() +", ");
         });
 
@@ -64,7 +64,7 @@ public final class CommandUtil {
     public static void slotNumbersForCarsWithColour(ParkingLot parkingLot, String colour) {
         Map<Slot, Vehicle> slotVehicleMap = AssignParkingSlot.getCurrentStatusOfSlot();
         slotVehicleMap.forEach((slot,vehicle)->{
-            if(vehicle.getColour().toString().equalsIgnoreCase(colour))
+            if(vehicle.getColour().equalsIgnoreCase(colour))
                 System.out.print(slot.getNumber() +", ");
         });
         System.out.println("");

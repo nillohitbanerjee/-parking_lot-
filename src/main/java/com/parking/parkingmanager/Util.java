@@ -31,27 +31,30 @@ public final class Util {
                     count++;
                     parkingLot= initializeSystem(line);
                 }
-                else if(line.contains(Commands.park.name())){
+                else if(parkingLot==null){
+                    System.out.println("Please, Creat a parking First!!!!");
+                }
+                else if(parkingLot!=null && line.contains(Commands.park.name())){
                     ParkLeaveBean parkLeaveBean = doParkingOrLeave(line);
                     command = new Park(parkLeaveBean.getVehicle(),parkingLot);
                 }
-                else if(line.contains(Commands.leave.name())){
+                else if(parkingLot!=null && line.contains(Commands.leave.name())){
                     ParkLeaveBean parkLeaveBean = doParkingOrLeave(line);
                     if(parkLeaveBean.getSlot()==null)
                         command = new Leave(parkLeaveBean.getVehicle(),parkingLot);
                     else
                         command = new Leave(parkLeaveBean.getSlot(),parkingLot);
                 }
-                else if(line.contains(Commands.status.name())){
+                else if(parkingLot!=null && line.contains(Commands.status.name())){
                     command = new Status(parkingLot);
                 }
-                else if(line.contains(Commands.registration_numbers_for_cars_with_colour.name())){
+                else if(parkingLot!=null && line.contains(Commands.registration_numbers_for_cars_with_colour.name())){
                     command = new RegistrationNumbersForCarsWithColour(parkingLot,getInput(line));
                 }
-                else if(line.contains(Commands.slot_numbers_for_cars_with_colour.name())){
+                else if(parkingLot!=null && line.contains(Commands.slot_numbers_for_cars_with_colour.name())){
                     command = new SlotNumbersForCarsWithColour(parkingLot,getInput(line));
                 }
-                else if(line.contains(Commands.slot_number_for_registration_number.name())){
+                else if(parkingLot!=null && line.contains(Commands.slot_number_for_registration_number.name())){
                     command = new SlotNumberForRegistrationNumber(parkingLot,getInput(line));
                 }
 
