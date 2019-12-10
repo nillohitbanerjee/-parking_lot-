@@ -32,7 +32,10 @@ public final class Util {
                 }
                 if(line.contains(Commands.leave.name())){
                     ParkLeaveBean parkLeaveBean = doParkingOrLeave(line);
-                    command = new Leave(parkLeaveBean.getVehicle(),parkLeaveBean.getParkingLot());
+                    if(parkLeaveBean.getSlot()==null)
+                        command = new Leave(parkLeaveBean.getVehicle(),parkLeaveBean.getParkingLot());
+                    else
+                        command = new Leave(parkLeaveBean.getSlot(),parkLeaveBean.getParkingLot());
                 }
                 if(line.contains(Commands.status.name())){
                     command = new Status(parkingLot);

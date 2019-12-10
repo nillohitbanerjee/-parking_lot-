@@ -10,15 +10,39 @@ public class Slot {
         return number;
     }
 
-    public void setNumber(int number) {
+    public Slot number(int number) {
         this.number = number;
+        return this;
     }
 
     public SlotType getSlotType() {
         return slotType;
     }
 
-    public void setSlotType(SlotType slotType) {
+    public Slot slotType(SlotType slotType) {
         this.slotType = slotType;
+        return this;
+    }
+
+    public boolean equals(Object o) {
+
+        if (o == this) return true;
+        if (!(o instanceof Slot)) {
+            return false;
+        }
+
+        Slot slot = (Slot) o;
+
+        return slot.slotType ==(slotType) &&
+                slot.number == number;
+    }
+
+    //Idea from effective Java : Item 9
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + number;
+        result = 31 * result + slotType.hashCode();
+        return result;
     }
 }

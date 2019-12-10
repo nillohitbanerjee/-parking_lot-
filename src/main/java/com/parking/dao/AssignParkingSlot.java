@@ -11,10 +11,16 @@ public final class AssignParkingSlot {
 
     private static final Map<Vehicle, Slot> vehicleSlotMap = new ConcurrentHashMap<>();
 
-    public static  Map<Vehicle, Slot> getCurrentStatusOfSystem(){
+    public static  Map<Vehicle, Slot> getCurrentStatusOfVechile(){
 
         return vehicleSlotMap;
     }
 
+    private static final Map<Slot, Vehicle> slotVechileMap = new ConcurrentHashMap<>();
+
+    public static  Map<Slot, Vehicle> getCurrentStatusOfSlot(){
+
+        return slotVechileMap;
+    }
     private AssignParkingSlot(){}
 }
