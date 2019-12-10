@@ -24,9 +24,6 @@ public final class Util {
             ParkingLot parkingLot= null;
             while (line != null) {
                 Command command =null;
-               // System.out.println(line);
-
-
                 if(line.contains(Commands.create_parking_lot.name()) && count ==0){
                     count++;
                     parkingLot= initializeSystem(line);

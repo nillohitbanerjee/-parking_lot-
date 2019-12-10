@@ -9,7 +9,7 @@ public class MyParkingLot implements ParkingLot {
 
     private Slot[] slots;
     private Stack<Integer> emptySlots;
-    private Stack<Integer> filledSlots;
+
     private int maxSize;
 
     public int getMaxSize() {
@@ -21,9 +21,7 @@ public class MyParkingLot implements ParkingLot {
     public Stack<Integer> getEmptySlots() {
         return emptySlots;
     }
-    public Stack<Integer> getFilledSlots() {
-        return filledSlots;
-    }
+
 
 
     public MyParkingLot(int size){
@@ -43,7 +41,7 @@ public class MyParkingLot implements ParkingLot {
             emptySlots.push(i);
         }
 
-        this.filledSlots = new Stack<>();
+
 
 
 

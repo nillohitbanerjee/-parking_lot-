@@ -16,5 +16,5 @@ public interface ParkingLot {
     public int getMaxSize();
     public Slot[] getSlots();
     public Stack<Integer> getEmptySlots();
-    public Stack<Integer> getFilledSlots();
+
 }
