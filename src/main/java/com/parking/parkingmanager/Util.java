@@ -31,8 +31,12 @@ public final class Util {
                     count++;
                     parkingLot= initializeSystem(line);
                 }
+                if(line.contains(Commands.create_parking_lot.name()) && count >0){
+                    count++;
+                    System.out.println("Sorry, Your parking is already created!!!!");
+                }
                 else if(parkingLot==null){
-                    System.out.println("Please, Creat a parking First!!!!");
+                    System.out.println("Please, Create a parking First!!!!");
                 }
                 else if(parkingLot!=null && line.contains(Commands.park.name())){
                     ParkLeaveBean parkLeaveBean = doParkingOrLeave(line);
@@ -58,6 +62,9 @@ public final class Util {
                     command = new SlotNumberForRegistrationNumber(parkingLot,getInput(line));
                 }
 
+                else{
+                    System.out.println("Please, Enter valid instructions!!!!");
+                }
                 if(command!=null)
                     command.execute();
                 line = reader.readLine();
