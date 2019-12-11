@@ -21,7 +21,7 @@ public class Leave implements Command {
     }
     @Override
     public void execute() {
-        if(slot==null)
+        if(null==slot)
              parkingLot.leave(vehicle);
         else
             parkingLot.empty(slot);

@@ -82,7 +82,7 @@ public final class CommandUtil {
 
         });
 
-        if(reg.size()==0){
+        if(0==reg.size()){
             System.out.println("Not found");
         }
         else{
