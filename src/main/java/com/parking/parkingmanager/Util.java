@@ -117,7 +117,7 @@ public final class Util {
                    count++;
                    parkingLot = initializeSystem(line);
                }
-               if (line.contains(Commands.create_parking_lot.name()) && count > 0) {
+               else if (line.contains(Commands.create_parking_lot.name()) && count > 0) {
                    count++;
                    System.out.println("Sorry, Your parking is already created!!!!");
                } else if (parkingLot == null) {
