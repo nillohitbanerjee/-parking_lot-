@@ -1,4 +1,4 @@
-package com.parking.parkingmanager
+package com.parking.parkingmanager;
 
 class ParkingManagerTest {
     void testMain() {

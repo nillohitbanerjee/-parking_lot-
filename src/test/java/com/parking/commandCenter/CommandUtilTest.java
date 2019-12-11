@@ -1,4 +1,4 @@
-package com.parking.commandCenter
+package com.parking.commandCenter;
 
 class CommandUtilTest {
     void testPark() {
