@@ -11,21 +11,25 @@ import java.util.Map;
 
 public final class CommandUtil {
 
-    public static void park(ParkingLot parkingLot, Vehicle vehicle) {
+    public static int park(ParkingLot parkingLot, Vehicle vehicle) {
 
-        if(AssignParkingSlot.getCurrentStatusOfSlot().size()==parkingLot.getMaxSize())
+        if(AssignParkingSlot.getCurrentStatusOfSlot().size()==parkingLot.getMaxSize()) {
             System.out.println("Sorry, parking lot is full");
+            return 0;
+        }
         else{
            int slotToBeFilled =  parkingLot.getEmptySlots().pop();
             AssignParkingSlot.getCurrentStatusOfSlot().put(parkingLot.getSlots()[slotToBeFilled],vehicle);
             AssignParkingSlot.getCurrentStatusOfVechile().put(vehicle,parkingLot.getSlots()[slotToBeFilled]);
             System.out.println("Allocated slot number: "+(parkingLot.getSlots()[slotToBeFilled].getNumber()));
+            return parkingLot.getSlots()[slotToBeFilled].getNumber();
         }
     }
 
-    public static void leave(ParkingLot parkingLot, Vehicle vehicle) {
+    public static int leave(ParkingLot parkingLot, Vehicle vehicle) {
         if(parkingLot.getEmptySlots().size()==parkingLot.getMaxSize()){
             System.out.println("Sorry, parking is already empty");
+            return 0;
 
         }
         else{
@@ -35,10 +39,11 @@ public final class CommandUtil {
             AssignParkingSlot.getCurrentStatusOfVechile().remove(vehicle);
             AssignParkingSlot.getCurrentStatusOfSlot().remove(slotToBeEmpty);
             System.out.println("Slot number "+slotToBeEmpty.getNumber()+" is free");
+            return slotToBeEmpty.getNumber();
         }
     }
 
-    public static void status(ParkingLot parkingLot) {
+    public static boolean status(ParkingLot parkingLot) {
 
 
         System.out.format("%s%22s%10s", "Slot No.", "Registration No", "Colour\n");
@@ -48,34 +53,45 @@ public final class CommandUtil {
             System.out.format("%s%27s%11s",  slot.getNumber(),vehicle.getRegistrationNumber(),vehicle.getColour()+"\n");
         });
 
+        return true;
 
     }
 
-    public static void registrationNumbersForCarsWithColour(ParkingLot parkingLot, String colour) {
+    public static String registrationNumbersForCarsWithColour(ParkingLot parkingLot, String colour) {
         Map<Slot, Vehicle> slotVehicleMap = AssignParkingSlot.getCurrentStatusOfSlot();
+        StringBuilder stringBuilder = new StringBuilder();
         slotVehicleMap.forEach((slot,vehicle)->{
-            if(vehicle.getColour().equalsIgnoreCase(colour))
-            System.out.print(vehicle.getRegistrationNumber() +", ");
+            if(vehicle.getColour().equalsIgnoreCase(colour)) {
+                stringBuilder.append(vehicle.getRegistrationNumber()).append(",").append(" ");
+
+            }
         });
 
-        System.out.println("");
+        stringBuilder.deleteCharAt(stringBuilder.lastIndexOf(", "));
+        System.out.println(stringBuilder.toString());
+        return stringBuilder.toString();
     }
 
-    public static void slotNumbersForCarsWithColour(ParkingLot parkingLot, String colour) {
+    public static String slotNumbersForCarsWithColour(ParkingLot parkingLot, String colour) {
         Map<Slot, Vehicle> slotVehicleMap = AssignParkingSlot.getCurrentStatusOfSlot();
+        StringBuilder stringBuilder = new StringBuilder();
         slotVehicleMap.forEach((slot,vehicle)->{
             if(vehicle.getColour().equalsIgnoreCase(colour))
-                System.out.print(slot.getNumber() +", ");
+                stringBuilder.append(slot.getNumber()).append(",").append(" ");
         });
-        System.out.println("");
+
+        stringBuilder.deleteCharAt(stringBuilder.lastIndexOf(", "));
+        System.out.println(stringBuilder.toString());
+        return stringBuilder.toString();
     }
 
-    public static void slotNumberForRegistrationNumber(ParkingLot parkingLot, String registrationNumber) {
+    public static String slotNumberForRegistrationNumber(ParkingLot parkingLot, String registrationNumber) {
         Map<Slot, Vehicle> slotVehicleMap = AssignParkingSlot.getCurrentStatusOfSlot();
+        StringBuilder stringBuilder = new StringBuilder();
         List<String> reg = new ArrayList<>();
         slotVehicleMap.forEach((slot,vehicle)->{
             if(vehicle.getRegistrationNumber().equals(registrationNumber)) {
-                System.out.print(slot.getNumber() + ", ");
+                stringBuilder.append(slot.getNumber()).append(",").append(" ");
                 reg.add(registrationNumber);
             }
 
@@ -84,9 +100,12 @@ public final class CommandUtil {
 
         if(0==reg.size()){
             System.out.println("Not found");
+            return "";
         }
         else{
-            System.out.println("");
+            stringBuilder.deleteCharAt(stringBuilder.lastIndexOf(", "));
+            System.out.println(stringBuilder.toString());
+            return stringBuilder.toString();
         }
     }
 
