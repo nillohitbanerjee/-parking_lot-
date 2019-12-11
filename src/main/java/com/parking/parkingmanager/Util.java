@@ -10,6 +10,7 @@ import com.parking.vehicle.Size;
 import com.parking.vehicle.Vehicle;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.Scanner;
 
@@ -19,7 +20,7 @@ public final class Util {
 
         BufferedReader reader;
         try {
-            reader = new BufferedReader(new FileReader(filePath));
+            reader = new BufferedReader(new FileReader(new File(filePath)));
             String line = reader.readLine();
             int count=0;
             ParkingLot parkingLot= null;

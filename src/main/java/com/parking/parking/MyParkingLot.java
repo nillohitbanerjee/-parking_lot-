@@ -37,7 +37,7 @@ public class MyParkingLot implements ParkingLot {
 
 
         this.emptySlots = new Stack<>();
-        for (int i =size; i>=0; i--){
+        for (int i =size-1; i>=0; i--){
             emptySlots.push(i);
         }
 

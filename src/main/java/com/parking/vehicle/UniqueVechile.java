@@ -25,6 +25,6 @@ public  abstract class UniqueVechile implements Vehicle {
         if (getClass() != obj.getClass())
             return false;
         Vehicle other = (Vehicle) obj;
-        return !this.getRegistrationNumber().equals(other.getRegistrationNumber());
+        return this.getRegistrationNumber().equals(other.getRegistrationNumber());
     }
 }
