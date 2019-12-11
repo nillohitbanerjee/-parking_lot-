@@ -16,16 +16,22 @@ public class ParkingManagerTest {
     @Test
     public void testMain() throws FileNotFoundException {
 
-        File inputXmlFile = new File(this.getClass().getResource("/parking_lot_file_inputs.txt").getFile());
-        System.out.println(inputXmlFile.getAbsolutePath());
+        try {
+            File inputXmlFile = new File(new ParkingManager().getClass().getResource("/parking_lot_file_inputs.txt").getFile());
+            System.out.println(inputXmlFile.getAbsolutePath());
 
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        InputStream is = loader.getResourceAsStream("/parking_lot_file_inputs.txt");
+            ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            InputStream is = loader.getResourceAsStream("/parking_lot_file_inputs.txt");
 
-        URL url = getClass().getResource("/parking_lot_file_inputs.txt");
-        System.out.println(url.getPath());
-        new FileReader(url.getFile());
-        String [] args={inputXmlFile.getAbsolutePath()};
-        ParkingManager.main(args);
+            URL url = getClass().getResource("/parking_lot_file_inputs.txt");
+            System.out.println(url.getPath());
+            new FileReader(url.getFile());
+            String[] args = {inputXmlFile.getAbsolutePath()};
+            ParkingManager.main(args);
+            assert (true);
+        }
+        catch (Exception e){
+            assert (false);
+        }
     }
 }
