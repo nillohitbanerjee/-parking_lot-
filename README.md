@@ -32,3 +32,6 @@ Please use <b>mvn clean install </b> to build the system
 <h2>Run the application </h2>
 
 Please use <b>java -jar parking_lot-1.0-SNAPSHOT.jar </b> to Run the system
+
+1) It provide us with an interactive command prompt based shell where commands can be typed in<br>
+2) It accept a filename as a parameter at the command prompt and read the commands from that file. You can refer "src/main/resources/parking_lot_file_inputs.txt" for more details
