@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 public final class Util {
 
-    public static  void  processFile (String filePath){
+    public static  boolean  processFile (String filePath){
 
         BufferedReader reader;
         try {
@@ -31,8 +31,10 @@ public final class Util {
                 line = reader.readLine();
             }
             reader.close();
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 
